@@ -149,7 +149,7 @@ interface FileDressFormElementDefinition
   value?: string;
 }
 
-export type DressFormElementDefinition = {
+export type DressFormElementDefinition = any /*{
   button: ButtonDressFormElementDefinition;
   checkbox: CheckboxDressFormElementDefinition;
   color: ColorDressFormElementDefinition;
@@ -175,7 +175,7 @@ export type DressFormElementDefinition = {
   time: never;
   url: never;
   week: never;
-}[InputElementType];
+}[InputElementType]; */
 
 export type DressFormConfig<T extends Record<string, unknown>> = {
   [K in keyof T as K extends string ? K : never]?: DressFormElementDefinition;
@@ -183,16 +183,4 @@ export type DressFormConfig<T extends Record<string, unknown>> = {
 
 export type DressFormValue<ConfigType extends Record<string, unknown>> = {
   [K in keyof ConfigType]: ConfigType[K];
-};
-
-const test: DressFormConfig<{
-  name: string;
-  age: number;
-  email: string;
-}> = {
-  name: {
-    type: 'custom',
-    customType: 'prova',
-    picone: 'luna',
-  },
 };

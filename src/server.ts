@@ -21,7 +21,7 @@ const ConnectSessionKnex = require('connect-session-knex');
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
-const dbPath = resolve(serverDistFolder, '../../prisma/dresscode.db');
+const dbPath = resolve(serverDistFolder, '../../../prisma/dresscode.db');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -39,8 +39,8 @@ const knex = Knex({
 const KnexSessionStore = ConnectSessionKnex(session);
 const store = new KnexSessionStore({
   knex,
-  tablename: 'sessions', // optional, default is 'sessions'
-  createtable: true, // if the table doesn't exist, it gets created
+  tablename: 'sessions',
+  createtable: true,
 });
 
 app.use(

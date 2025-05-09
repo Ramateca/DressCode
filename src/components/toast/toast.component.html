@@ -1,0 +1,17 @@
+<div class="fixed top-4 right-4 z-50 space-y-2 max-w-sm">
+  @for (toast of toastService.toasts(); track toast.id) {
+    <div
+      [id]="'toast-' + toast.id"
+      class="p-3 rounded-lg shadow-lg transform transition-all duration-300 flex items-center justify-between"
+      [ngClass]="getToastClasses(toast)"
+      (click)="dismissWithAnimation(toast)"
+    >
+      <span>{{ toast.message }}</span>
+      <button class="ml-2 text-current opacity-70 hover:opacity-100" aria-label="Close">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  }
+</div>

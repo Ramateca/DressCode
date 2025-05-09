@@ -1,0 +1,97 @@
+<div class="flex h-full">
+  <!-- Main Content Area - Form Preview -->
+  <div class="flex-1 p-4 overflow-y-auto">
+    <form
+      [dress-form]="formConfig()"
+      (submit)="onFormSubmit($event)"
+      class="space-y-4 max-w-2xl mx-auto"
+    ></form>
+  </div>
+
+  <!-- Right Sidebar - Element Properties -->
+  @if (selectedElement()) {
+  <div class="w-80 border-l border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 overflow-y-auto shadow-lg">
+    <div class="p-4">
+      <h3 class="text-base font-medium text-gray-800 dark:text-white mb-4">Proprietà</h3>
+      <div class="space-y-3">
+        <!-- Element Name -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nome</label>
+          <input
+            type="text"
+            class="w-full px-3 py-2 text-sm border rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+            [value]="selectedElement()?.name"
+            (input)="updateElementName($any($event.target).value)"
+          />
+        </div>
+
+        <!-- Element Type -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tipo</label>
+          <select
+            class="w-full px-3 py-2 text-sm border rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+            [value]="selectedElement()?.config?.type"
+            (change)="updateElementType($any($event.target).value)"
+          >
+            <option value="text">Testo</option>
+            <option value="number">Numero</option>
+            <option value="email">Email</option>
+            <option value="password">Password</option>
+            <option value="date">Data</option>
+            <option value="checkbox">Checkbox</option>
+            <option value="radio">Radio</option>
+            <option value="select">Select</option>
+          </select>
+        </div>
+
+        <!-- Element Label -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Etichetta</label>
+          <input
+            type="text"
+            class="w-full px-3 py-2 text-sm border rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+            [value]="selectedElement()?.config?.label"
+            (input)="updateElementLabel($any($event.target).value)"
+          />
+        </div>
+
+        <!-- Element Placeholder -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Placeholder</label>
+          <input
+            type="text"
+            class="w-full px-3 py-2 text-sm border rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+            [value]="selectedElement()?.config?.placeholder"
+            (input)="updateElementPlaceholder($any($event.target).value)"
+          />
+        </div>
+
+        <!-- Required Checkbox -->
+        <div class="flex items-center">
+          <input
+            type="checkbox"
+            id="required-checkbox"
+            class="h-4 w-4 text-red-500 border-gray-300 rounded focus:ring-red-500"
+            [checked]="selectedElement()?.config?.validate?.required"
+            (change)="updateElementRequired($any($event.target).checked)"
+          />
+          <label for="required-checkbox" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+            Campo obbligatorio
+          </label>
+        </div>
+
+        <!-- Element Description -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Descrizione</label>
+          <textarea
+            class="w-full px-3 py-2 text-sm border rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+            rows="3"
+            [value]="selectedElement()?.description"
+            (input)="updateElementDescription($any($event.target).value)"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

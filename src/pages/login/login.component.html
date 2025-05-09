@@ -1,0 +1,91 @@
+<header class="fixed w-full bg-bg-base dark:bg-gray-900 shadow-soft dark:shadow-none z-50">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center">
+      <span class="text-2xl font-display font-bold text-dresscode-main dark:text-red-500">Dress<span
+        class="text-dresscode-dark dark:text-red-700">Code</span></span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <a href="/" class="hidden md:block text-dresscode-main dark:text-red-500 hover:text-dresscode-dark dark:hover:text-red-400 transition">Back to Home</a>
+    </div>
+  </div>
+</header>
+
+<section class="min-h-screen bg-bg-base dark:bg-gray-900 flex items-center justify-center p-6 pt-24">
+  <div class="container mx-auto max-w-md">
+    <div class="bg-bg-muted dark:bg-gray-800 rounded-xl shadow-soft dark:shadow-none p-8">
+      <h1 class="text-3xl font-display text-center mb-6 text-dresscode-dark dark:text-white">
+        <span class="text-dresscode-main dark:text-red-500">Login</span> to Your Account
+      </h1>
+      <p class="text-text-muted dark:text-gray-300 text-center mb-8">
+        Access your DressCode dashboard and start designing.
+      </p>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <div>
+          <label for="email" class="block text-sm font-medium text-dresscode-dark dark:text-gray-200 mb-2">Email</label>
+          <input
+            id="email"
+            type="email"
+            required
+            autocomplete="email"
+            formControlName="email"
+            class="w-full px-4 py-3 rounded-lg bg-bg-base dark:bg-gray-700 border border-dresscode-muted dark:border-gray-600 text-text-muted dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-dresscode-main dark:focus:ring-red-500"
+            placeholder="Enter your email"
+            [class.border-red-500]="loginForm.get('email')?.touched && loginForm.get('email')?.invalid"
+          >
+          @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
+            <p class="text-red-500 text-sm mt-1">
+              Please enter a valid email address.
+            </p>
+          }
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-medium text-dresscode-dark dark:text-gray-200 mb-2">Password</label>
+          <input
+            id="password"
+            type="password"
+            required
+            autocomplete="current-password"
+            formControlName="password"
+            class="w-full px-4 py-3 rounded-lg bg-bg-base dark:bg-gray-700 border border-dresscode-muted dark:border-gray-600 text-text-muted dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-dresscode-main dark:focus:ring-red-500"
+            placeholder="Enter your password"
+            [class.border-red-500]="loginForm.get('password')?.touched && loginForm.get('password')?.invalid"
+          >
+          @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+            <p class="text-red-500 text-sm mt-1">
+              Password is required.
+            </p>
+          }
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid || loading"
+          class="w-full bg-dresscode-main dark:bg-red-600 text-dresscode-light dark:text-white py-3 rounded-lg hover:bg-dresscode-dark dark:hover:bg-red-700 transition shadow-soft dark:shadow-none disabled:opacity-50"
+        >
+          @if (loading) {
+            <span class="flex items-center justify-center">
+            <svg class="animate-spin h-5 w-5 mr-2 text-dresscode-light dark:text-white" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Logging In...
+          </span>
+          } @else {
+            <span>Log In</span>
+          }
+        </button>
+      </form>
+
+      <div class="mt-6 text-center">
+        <a href="#" class="text-dresscode-main dark:text-red-500 hover:text-dresscode-dark dark:hover:text-red-400 transition">Forgot Password?</a>
+      </div>
+      <div class="mt-2 text-center text-text-muted dark:text-gray-300">
+        Don't have an account? <a href="/register" class="text-dresscode-main dark:text-red-500 hover:text-dresscode-dark dark:hover:text-red-400 transition">Sign
+        Up</a>
+      </div>
+    </div>
+  </div>
+</section>

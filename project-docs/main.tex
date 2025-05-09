@@ -1,0 +1,191 @@
+\documentclass[11pt]{article}
+\usepackage[italian]{babel}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{svg}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{blindtext}
+\usepackage{booktabs}
+\usepackage[a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{lscape}
+\usepackage[final]{pdfpages}
+\usetikzlibrary{arrows,shapes,positioning,shadows,trees}
+
+\tikzset{
+every node/.style={draw,text width=2.5cm,drop shadow},
+style1/.style= {rectangle, rounded corners=2pt, thin,align=center,fill=Secondary},
+style2/.style= {rectangle, rounded corners=6pt, thin,align=center,fill=Secondary!80},
+style3/.style= {rectangle,thin,align=left,fill=Secondary!30},
+node distance = 1.5cm
+}
+
+\renewcommand{\arraystretch}{1.5}
+
+\definecolor{Primary}{HTML}{DC2626}
+\definecolor{Secondary}{HTML}{FFFFFF}
+
+\author{
+Giorgio Matacera\\
+\texttt{mataceragiorgio@gmail.com}
+}
+\title{\huge DressCode}
+\date{\vspace{-5ex}}
+
+\begin{document}
+\maketitle
+\begin{center}
+    \includegraphics[width=\linewidth]{logo.jpg}
+\end{center}
+\clearpage
+{ \hypersetup{hidelinks} \tableofcontents }
+\clearpage
+
+\section{\huge Introduzione}
+\subsection{Scopo del Documento}
+Con questo documento si formalizza la fase di definizione e pianificazione progettuale per l'applicativo web \textbf{DressCode}. L'obiettivo principale è fornire una visione chiara e strutturata del progetto\\ \textbf{DressCode}, definendo le caratteristiche, le tempistiche e le strategie operative necessarie per lo sviluppo di un form builder innovativo e user-friendly.
+
+\subsection{L'Idea e gli Obiettivi}
+L'idea di \textbf{DressCode} è permettere agli utenti di costruire moduli personalizzati (form) integrabili in siti web o applicazioni esterne, senza richiedere competenze tecniche avanzate. Il progetto si basa su un'interfaccia intuitiva con un tema ispirato all'abbigliamento, che rende l'esperienza creativa e coinvolgente. Gli obiettivi principali sono:
+\begin{itemize}
+    \item[] \textbf{Semplificare la creazione di form:} Offrire uno strumento accessibile per progettare moduli complessi.
+    \item[] \textbf{Promuovere la personalizzazione:} Fornire opzioni per adattare i form alle esigenze specifiche degli utenti.
+    \item[] \textbf{Integrazione facile:} Consentire l'inserimento dei form in piattaforme esterne con semplicità.
+\end{itemize}
+
+\subsection{Il Team}
+\ttfamily\large\begin{tabularx}{\linewidth}{lXr}
+    Giorgio Matacera & & Designer UX, Sviluppatore full stack e Project Manager\\
+\end{tabularx}
+\rmfamily
+% Aggiungi altri membri del team se necessario
+
+\subsection{Analisi Tecnica}
+Il progetto è tecnicamente fattibile, utilizzando tecnologie comuni e accessibili. Il tema dell'abbigliamento influenza solo l'interfaccia e la terminologia, senza complicare lo sviluppo.
+
+\subsubsection{Tecnologie Necessarie}
+\subsubsection*{Linguaggi di Programmazione e Markup}
+\begin{itemize}
+    \item HTML, CSS, JavaScript/TypeScript per il front-end;
+    \item Typescript per il back-end;
+    \item PostgreSQL per la base dati.
+\end{itemize}
+
+\subsubsection*{Software di Progettazione e Design}
+\begin{itemize}
+    \item Figma per wireframe, mockup e prototipazione;
+\end{itemize}
+
+\subsubsection*{Software per lo Sviluppo}
+\begin{itemize}
+    \item Neovim, WebStorm per la scrittura del codice.
+\end{itemize}
+
+\subsubsection*{Frameworks}
+\begin{itemize}
+    \item Angular full stack con render ibrido;
+\end{itemize}
+
+\subsubsection{Infrastruttura}
+Il progetto richiederà un servizio di hosting per l'applicativo e il database, con scalabilità per gestire un numero crescente di utenti. Sarà necessario un dominio (es. DressCode.com) e un certificato SSL per la sicurezza.
+
+\subsubsection{Sicurezza \& Privacy}
+\textbf{DressCode} rispetterà il GDPR per la gestione dei dati degli utenti. Saranno inclusi termini e condizioni, una politica sulla privacy e misure di sicurezza (es. crittografia) per proteggere i dati raccolti dai form.
+
+\subsection{Fattibilità Temporale}
+La fattibilità temporale dipende dalle scadenze del corso. Con una metodologia agile e una pianificazione attenta, il progetto può essere completato entro il termine, anche se potrebbero esserci rischi di ritardi.
+
+\subsection{Deliverable}
+\begin{itemize}
+  \item Prototipo interattivo di DressCode (realizzato in Angular).
+  \item Documentazione completa (questo documento).
+  \item Wireframe e mockup (in Figma).
+\end{itemize}
+
+\section{\huge Pianificazione Preliminare}
+\subsection{Work Breakdown Structure (WBS)}
+\begin{tikzpicture}[
+remember picture,
+level 1/.style={sibling distance=40mm},
+edge from parent/.style={->,draw},
+>=latex]
+\node[style1] {DressCode}
+child {node[style2] (c1) {Analisi}}
+child {node[style2] (c2) {Progettazione}}
+child {node[style2] (c3) {Sviluppo}}
+child {node[style2] (c4) {Validazione}};
+
+\node [style3,below of = c1,xshift=30pt] (c11) {Definizione progetto};
+\node [style3,below of = c11] (c12) {Analisi utenti};
+\node [style3,below of = c12] (c13) {Requisiti};
+
+\node [style3,below of = c2,xshift=30pt] (c21) {Wireframe};
+\node [style3,below of = c21] (c22) {Mockup};
+\node [style3,below of = c22] (c23) {Prototipazione};
+
+\node [style3,below of = c3,xshift=30pt] (c31) {Sviluppo front-end};
+\node [style3,below of = c31] (c32) {Sviluppo back-end};
+\node [style3,below of = c32] (c33) {Integrazione};
+
+\node [style3,below of = c4,xshift=30pt] (c41) {Testing};
+\node [style3,below of = c41] (c42) {Revisione finale};
+
+\foreach \value in {1,2,3}
+  \draw[->, line width=2pt] (c1.195) |- (c1\value.west);
+
+\foreach \value in {1,2,3}
+  \draw[->, line width=2pt] (c2.195) |- (c2\value.west);
+
+\foreach \value in {1,2,3}
+  \draw[->, line width=2pt] (c3.195) |- (c3\value.west);
+
+\foreach \value in {1,2}
+  \draw[->, line width=2pt] (c4.195) |- (c4\value.west);
+\end{tikzpicture}
+
+\subsection{Gantt}
+\begin{center}
+    \includegraphics[width=1.4\linewidth,angle=-90]{gantt.pdf}
+\end{center}
+
+\subsection{Stima dei Costi e del Budget}
+La stima dei costi per \textbf{DressCode} si basa sui 48 giorni lavorativi pianificati (1° agosto 2024 - 8 ottobre 2024), con Giorgio Matacera come unica risorsa. Assumendo 8 ore al giorno e un costo orario di 30 €, le 384 ore totali generano un costo diretto di 11.520 €. Questo copre analisi (54 ore), progettazione (108 ore), sviluppo (184 ore) e validazione (38 ore).
+\\\\
+I costi indiretti includono hosting base (15 €) e un dominio (15 €), per un totale di 60 €. Strumenti come Angular e PostgreSQL sono gratuiti. Un buffer di contingenza del 15\% (1.728 €) è aggiunto per imprevisti.
+\\\\
+Il costo totale stimato è quindi di 13.278 €, adeguato per un prototipo accademico realizzato individualmente.
+
+\subsection{Valutazione dei Rischi}
+La valutazione dei rischi per \textbf{DressCode} considera potenziali ostacoli nello sviluppo di \textbf{DressCode} entro i 48 giorni lavorativi pianificati (1° agosto 2024 - 8 ottobre 2024), con Giorgio Matacera come unica risorsa. Di seguito i principali rischi identificati e le strategie di mitigazione.
+\\\\
+Un rischio significativo è il ritardo nella consegna, dato il tempo limitato e il carico di lavoro su una sola persona. Per mitigare, si adotterà una metodologia agile con iterazioni brevi e priorità alle funzionalità essenziali. Un altro rischio è la complessità tecnica, specialmente nell'implementazione dell'editor drag-and-drop con Angular e dell'integrazione con PostgreSQL. Si affronterà usando librerie consolidate e test incrementali.
+\\\\
+Errori nel prototipo, come bug nell'esportazione dei form o nella collaborazione in tempo reale, potrebbero emergere. Si preverranno con sessioni di testing regolari durante lo sviluppo. Inoltre, la mancanza di risorse esterne (es. collaboratori o budget per strumenti premium) potrebbe limitare la scalabilità. Questo sarà gestito concentrandosi su un prototipo minimo viable (MVP) adatto al contesto accademico.
+\\\\
+Infine, un'interruzione personale (es. malattia) potrebbe influire sulla tabella di marcia. Si mitigherà pianificando un margine di contingenza del 15\% nel tempo e nel costo, già incluso nella stima di 13.308 €.
+
+\include{analisi degli stakeholder}
+\include{analisi dei requisiti}
+\include{uml/uml}
+\include{analisi degli utenti/analisi degli utenti}
+
+\section{Glossario}
+\begin{tabularx}{\linewidth}{lX}
+    \toprule
+    \textbf{Termini} & \textbf{Definizione} \\
+    \midrule
+    Vestito & Progetto complessivo di un utente. \\
+    Tessuto & Gruppo o cartella all'interno di un Vestito. \\
+    Trama & Flusso di moduli con una sequenza logica. \\
+    Filo & Singolo modulo all'interno di un flusso. \\
+    Fibra & Campo specifico di un modulo. \\
+    Boutique & Area personale dell'utente. \\
+    Vetrina & Sezione pubblica per i form condivisi. \\
+    \bottomrule
+\end{tabularx}
+
+\end{document}

@@ -1,0 +1,53 @@
+ <!-- Label (if provided) -->
+ @let element = elementConfig;
+ @let formName = dressFormName();
+ @if (element.label) {
+    <label
+      for="dress-form-control-{{formName}}"
+      class=""
+    >{{ element.label }}</label>
+  }
+
+  <!-- Input field based on type -->
+  @switch (element.type) {
+    @case ('select') {
+      <!-- Handle select elements if you add options to config later -->
+      <select
+        id="dress-form-control-{{formName}}"
+        [formControlName]="formName">
+        <!-- Add options dynamically if config supports it -->
+      </select>
+    }
+    @case ('checkbox') {
+      <input
+        id="dress-form-control-{{formName}}"
+        type="checkbox"
+        [formControlName]="formName"
+      />
+    }
+    @case ('radio') {
+      <!-- Radio requires additional config for options; placeholder for now -->
+      <input
+        id="dress-form-control-{{formName}}"
+        type="radio"
+        [formControlName]="formName"
+      />
+    }
+    @default {
+      <input
+        id="dress-form-control-{{formName}}"
+        [type]="element.type"
+        [formControlName]="formName"
+        [placeholder]="element.placeholder ?? ''"
+        [attr.multiple]="element.multiple ? true : null"
+      />
+    }
+  }
+
+  <!-- Description or tooltip (if provided) -->
+  @if (element.description) {
+    <small>{{ element.description }}</small>
+  }
+  @if (element.tooltip) {
+    <span [attr.title]="element.tooltip">ℹ️</span>
+  }

@@ -1,0 +1,134 @@
+<div
+  class="flex h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200"
+>
+  <!-- Sidebar -->
+  <aside
+    class="w-72 flex-shrink-0 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col py-4"
+  >
+    <!-- Editable Title -->
+    <div class="mb-4 px-4">
+      @if (isEditingTitle()) {
+      <div class="flex items-center">
+        <input
+          type="text"
+          [value]="currentTitle()"
+          (input)="currentTitle.set($any($event.target).value)"
+          (keydown.enter)="saveTitle()"
+          (keydown.escape)="cancelEditTitle()"
+          (blur)="saveTitle()"
+          class="flex-grow px-2 py-1 text-lg font-semibold border border-red-500 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+          #titleInput
+        />
+      </div>
+      } @else {
+      <div
+        class="flex items-center group cursor-pointer"
+        (click)="startEditTitle()"
+      >
+        <h1
+          class="text-xl font-bold text-gray-900 dark:text-white truncate mr-2"
+        >
+          {{ vestito()?.title || "Loading..." }}
+        </h1>
+        <svg
+          class="w-4 h-4 text-gray-400 dark:text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+          ></path>
+        </svg>
+      </div>
+      }
+    </div>
+
+    <!-- Add Tessuto Button -->
+    <div class="mb-4 px-4">
+      <button
+        (click)="addTessuto()"
+        class="w-full flex items-center justify-center px-3 py-1.5 text-sm text-white dark:text-gray-100 bg-red-500 dark:bg-red-600 hover:bg-red-600 dark:hover:bg-red-700 rounded-md transition"
+      >
+        <svg
+          class="w-4 h-4 mr-1"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+          ></path>
+        </svg>
+        Add {{ "Fabric" | glossario }}
+      </button>
+    </div>
+
+    <!-- Tree Structure -->
+    <section class="flex-grow overflow-y-auto" dress-albero-manager>
+      @if (treeHierarchy(); as v) {
+      <ul>
+        <!-- Livello Tessuto -->
+        @for (tessuto of v.tessuti || []; track tessuto.id) {
+        <dress-albero-file [node]="tessuto"></dress-albero-file>
+        }
+      </ul>
+      } @else {
+      <p class="text-center text-gray-500 dark:text-gray-400">
+        Loading vestito...
+      </p>
+      }
+    </section>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 flex flex-col">
+    <!-- Tab Bar -->
+    <div
+      class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex"
+    >
+      @for (tab of openTabs; track tab.id) {
+      <div
+        (auxclick)="$event.which === 2 ? closeTab(tab) : null"
+        (click)="selectTab(tab)"
+        class="px-4 py-2 flex items-center gap-2 cursor-pointer border-r border-gray-200 dark:border-gray-700"
+        [class.bg-gray-100]="activeTab()?.id === tab.id"
+        [class.dark:bg-gray-700]="activeTab()?.id === tab.id"
+      >
+        <ng-icon
+          [name]="tab.icon"
+          class="w-4 h-4 text-gray-500 dark:text-gray-400"
+        ></ng-icon>
+        <span class="text-sm">{{ tab.label }}</span>
+        <button
+          (click)="$event.stopPropagation(); closeTab(tab)"
+          class="ml-2 p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 flex items-center justify-center"
+        >
+          <ng-icon name="heroXMark"></ng-icon>
+        </button>
+      </div>
+      }
+    </div>
+
+    <!-- Tab Content -->
+    <div class="flex-1 overflow-y-auto">
+      @if (activeTab(); as tab) {
+      <ng-container
+        *ngComponentOutlet="tab.component; injector: openTabInjector"
+      ></ng-container>
+      } @else {
+      <div
+        class="flex items-center justify-center h-full text-gray-500 dark:text-gray-400"
+      >
+        No file open
+      </div>
+      }
+    </div>
+  </main>
+</div>

@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+.dropdown:focus-within .dropdown-menu {
+  opacity:1;
+  transform: translate(0) scale(1);
+  visibility: visible;
+}
+
+#themeDropdownMenu {
+  left: 100% !important;
+  transform: unset !important;
+}

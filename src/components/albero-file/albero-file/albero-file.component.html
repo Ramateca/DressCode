@@ -1,0 +1,51 @@
+@let n = node();
+<div class="tree-node mb-1">
+  <div
+    (click)="click($event)"
+    (contextmenu)="contextmenu($event); false"
+    class="group node-label hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2 p-1 cursor-pointer text-gray-800 dark:text-gray-200"
+  >
+    <span class="text-gray-500 dark:text-gray-400">
+      <ng-icon
+        [name]="expanded ? n.iconOpen : n.icon"
+        class="w-4 h-4"
+      ></ng-icon>
+    </span>
+    @if (isRenaming()) {
+    <div class="flex-grow">
+      <input
+        type="text"
+        [value]="currentLabel()"
+        (input)="currentLabel.set($any($event.target).value)"
+        (keydown.enter)="saveRename()"
+        (keydown.escape)="cancelRename()"
+        (blur)="saveRename()"
+        class="w-full px-2 py-0 text-sm border border-red-500 rounded-sm bg-white dark:bg-gray-700 focus:outline-none focus:ring-1 focus:ring-red-500"
+        #nameInput
+      />
+    </div>
+    } @else {
+    <span class="text-sm truncate flex-grow">{{ n.label }}</span>
+    }
+    @if (n.isExpandable) {
+    <button
+      (click)="$event.stopPropagation(); $event.preventDefault(); $event.stopImmediatePropagation(); add($event)"
+      class="hidden cursor-pointer group-hover:inline-flex z-10 p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600"
+    >
+      <ng-icon name="heroPlus"></ng-icon>
+    </button>
+    }
+  </div>
+
+  @if (expanded && n.children.length) {
+  <div
+    class="node-children ml-1 mt-1 border-l border-gray-200 dark:border-gray-700 pl-1"
+  >
+    @for (child of n.children; track child.id) {
+    <dress-albero-file [node]="child"></dress-albero-file>
+    }
+  </div>
+  } @else if (expanded) {
+  <div class="ml-1 mt-1 pb-2 border-l border-gray-200 dark:border-gray-700 pl-1"></div>
+  }
+</div>

@@ -1,0 +1,166 @@
+// schema.prisma
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dresscode.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator zod {
+  provider = "zod-prisma-types"
+}
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt DateTime @map("expire")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+model Impostazioni {
+  id                 String  @id @default(uuid())
+  user               User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId             String  @unique
+  useGlossaryTerms   Boolean @default(true)
+  showTooltips       Boolean @default(true)
+  fontSize           String  @default("normal")
+  showStatsOnLogin   Boolean @default(true)
+  notificationsEmail Boolean @default(true)
+  contrastMode       Boolean @default(false)
+}
+
+model User {
+  id                  String         @id @default(uuid())
+  username            String
+  email               String         @unique
+  password            String
+  nome                String
+  cognome             String
+  vestiti             Vestito[]
+  collaboratedVestiti Collaborator[]
+  notifications       Notification[]
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+  Vote                Vote[]
+  impostazioni        Impostazioni?
+}
+
+model Vestito {
+  id              String         @id @default(uuid())
+  title           String
+  description     String?
+  isPublished     Boolean        @default(false)
+  startDate       DateTime?
+  endDate         DateTime?
+  viewCount       Int            @default(0)
+  submissionCount Int            @default(0)
+  customTheme     String         @default("{}")
+  user            User           @relation(fields: [userId], references: [id])
+  userId          String
+  tessuti         Tessuto[]
+  collaborators   Collaborator[]
+  votes           Vote[]
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
+
+model Collaborator {
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String
+  vestito   Vestito @relation(fields: [vestitoId], references: [id])
+  vestitoId String
+  role      String  @default("collaborator")
+
+  @@id([userId, vestitoId])
+}
+
+model Tessuto {
+  id        String   @id @default(uuid())
+  title     String
+  vestito   Vestito  @relation(fields: [vestitoId], references: [id], onDelete: Cascade)
+  vestitoId String
+  trame     Trama[]
+  order     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Trama {
+  id        String   @id @default(uuid())
+  title     String
+  fili      Filo[]
+  order     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tessuto   Tessuto  @relation(fields: [tessutoId], references: [id], onDelete: Cascade)
+  tessutoId String
+}
+
+model Filo {
+  id          String         @id @default(uuid())
+  title       String
+  description String?
+  trama       Trama          @relation(fields: [tramaId], references: [id], onDelete: Cascade)
+  tramaId     String
+  fibre       Fibra[]
+  order       Int
+  media       Media[]
+  responses   FormResponse[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model Fibra {
+  id          String   @id @default(uuid())
+  nome        String
+  definizione String   @default("{}")
+  filo        Filo     @relation(fields: [filoId], references: [id], onDelete: Cascade)
+  filoId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  type      String
+  message   String
+  read      Boolean  @default(false)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime @default(now())
+}
+
+model Media {
+  id          String   @id @default(uuid())
+  url         String
+  type        String
+  description String?
+  filo        Filo?    @relation(fields: [filoId], references: [id], onDelete: Cascade)
+  filoId      String?
+  createdAt   DateTime @default(now())
+}
+
+model Vote {
+  id        String   @id @default(uuid())
+  value     Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  vestito   Vestito  @relation(fields: [vestitoId], references: [id], onDelete: Cascade)
+  vestitoId String
+  createdAt DateTime @default(now())
+}
+
+model FormResponse {
+  id          String   @id @default(uuid())
+  filoId      String
+  data        String   @default("{}")
+  submittedAt DateTime @default(now())
+  filo        Filo     @relation(fields: [filoId], references: [id], onDelete: Cascade)
+}

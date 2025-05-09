@@ -1,0 +1,93 @@
+\usetikzlibrary{positioning}
+\newcolumntype{M}{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{1.5cm}}
+
+\section{\huge Analisi degli Stakeholder}
+
+\subsection{Introduzione}
+
+Questo documento identifica e analizza gli stakeholder del progetto \textbf{DressCode}, che mira a sviluppare \textbf{DressCode}, un applicativo web per la creazione di moduli personalizzati. L'analisi degli stakeholder è fondamentale per integrare le esigenze di tutte le parti interessate nel processo di sviluppo, garantendo un prodotto che soddisfi sia gli obiettivi tecnici che quelli di user experience.
+
+\subsection{Identificazione degli Stakeholder}
+\subsubsection{Stakeholder Interni}
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}l|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}l|}
+\hline
+\rowcolor{Primary}
+\textcolor{white}{\textbf{Stakeholder}} & 
+\textcolor{white}{\textbf{Ruolo}} & 
+\textcolor{white}{\textbf{Interessi}} & 
+\textcolor{white}{\makecell{\textbf{Livello di} \\ \textbf{Influenza}}} \\ \hline
+\textbf{Designer UX} & Responsabile della progettazione UX e gestione del progetto & Creare un'esperienza utente intuitiva e tematica & Alto \\ \hline
+\textbf{Team di Sviluppo} & Sviluppatori frontend e backend & Realizzare un applicativo funzionale e scalabile & Alto \\ \hline
+\end{tabularx}
+
+\subsubsection{Stakeholder Esterni}
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}l|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}l|}
+\hline
+\rowcolor{Primary}
+\textcolor{white}{\textbf{Stakeholder}} & 
+\textcolor{white}{\textbf{Ruolo}} & 
+\textcolor{white}{\textbf{Interessi}} & 
+\textcolor{white}{\makecell{\textbf{Livello di} \\ \textbf{Influenza}}} \\ \hline
+\textbf{Utenti Finali} & Sviluppatori web, designer, PMI & Facilità d'uso, personalizzazione dei form & Alto \\ \hline
+\textbf{Partner Tecnologici} & Fornitori di hosting o API & Integrazione fluida con i loro servizi & Medio \\ \hline
+\textbf{Concorrenza} & Altri form builder (es. Google Forms) & Monitorare innovazioni e posizionamento & Medio \\ \hline
+\end{tabularx}
+
+\subsection{Analisi}
+
+\subsubsection{Designer UX}
+\begin{itemize}
+\item Interessi: Progettare un'interfaccia intuitiva e creativa basata sul tema dell'abbigliamento, rispettando i requisiti del corso di UX Design \& Process Architect. Garantire che il progetto soddisfi gli obiettivi di usabilità e innovazione. \\
+\item Strategia di Coinvolgimento: Gestione diretta del progetto, con pianificazione e documentazione dettagliata per monitorare i progressi.
+\end{itemize}
+
+\subsubsection{Team di Sviluppo}
+\begin{itemize}
+\item Interessi: Implementare le funzionalità di \textbf{DressCode} (es. creazione di Vestiti, Tessuti, Trame, Fili, Fibre) in modo efficiente, con un codice pulito e scalabile. \\
+\item Strategia di Coinvolgimento: Riunioni regolari per definire specifiche tecniche e ricevere feedback sul prototipo.
+\end{itemize}
+
+\subsubsection{Utenti Finali}
+\begin{itemize}
+\item Interessi: Creare moduli personalizzati rapidamente, con un'interfaccia user-friendly e opzioni di design (es. Accessori). Desiderano integrare i form in siti o applicazioni esterne senza difficoltà. \\
+\item Strategia di Coinvolgimento: Raccolta di feedback tramite test utente sul prototipo per migliorare l'esperienza.
+\end{itemize}
+
+\subsubsection{Partner Tecnologici}
+\begin{itemize}
+\item Interessi: Garantire che \textbf{DressCode} si integri con i loro servizi (es. hosting per la Vetrina, API per la condivisione). \\
+\item Strategia di Coinvolgimento: Collaborazione per test di compatibilità e documentazione tecnica condivisa.
+\end{itemize}
+
+\subsubsection{Concorrenza}
+\begin{itemize}
+\item Interessi: Osservare come \textbf{DressCode} si posiziona nel mercato rispetto a soluzioni esistenti, con un focus sul tema unico dell'abbigliamento. \\
+\item Strategia di Coinvolgimento: Analisi comparativa per identificare punti di forza e differenziazione.
+\end{itemize}
+
+\pagebreak
+\subsection{Strategia}
+\begin{center}
+\begin{tikzpicture}[xscale=1.5, yscale=1.5]
+    \draw[thick,->] (-4,0) -- (4,0) node[fill=Secondary!40,right] {Interesse};
+    \draw[thick,->] (0,-4) -- (0,4) node[fill=Secondary!40,above] {Influenza};
+
+    \node[fill=Secondary!40,text width=2.612cm] at (4,4) {Alto Interesse\\Alta Influenza};
+    \node[fill=Secondary!40,text width=2.851cm] at (-4,4) {Basso Interesse\\Alta Influenza};
+    \node[fill=Secondary!40,text width=2.851cm] at (4,-4) {Alto Interesse\\Bassa Influenza};
+    \node[fill=Secondary!40,text width=2.851cm] at (-4,-4) {Basso Interesse\\Bassa Influenza};
+
+    \node[fill=Primary!40,draw=black,rounded corners] at (2,3.2) {Designer UX};
+    \node[fill=Primary!40,draw=black,rounded corners] at (2,2.5) {Team di\\Sviluppo};
+    \node[fill=Primary!40,draw=black,rounded corners] at (2,1.8) {Utenti Finali};
+    \node[fill=Primary!20,draw=black,rounded corners] at (-2,2) {Partner\\Tecnologici};
+    \node[fill=Primary!20,draw=black,rounded corners] at (1,-1) {Concorrenza};
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{Analisi della Concorrenza}
+L'analisi della concorrenza per \textbf{DressCode} si concentra sui principali form builder web che competono con \textbf{DressCode}, un applicativo pensato per creare moduli personalizzati con un'interfaccia intuitiva e un tema ispirato all'abbigliamento. I concorrenti diretti includono strumenti consolidati come Google Forms e Typeform, mentre Jotform rappresenta un concorrente intermedio per funzionalità e personalizzazione.
+\\\\
+Google Forms offre un servizio gratuito e semplice, integrato con Google Workspace, ma manca di opzioni avanzate di design e di un'esperienza utente tematica, punti di forza di \textbf{DressCode}. Typeform si distingue per l'interfaccia moderna e interattiva, attirando utenti disposti a pagare per un'estetica curata, ma il suo costo (da 25 €/mese) e la complessità potrebbero scoraggiare piccole imprese o utenti base, un segmento che \textbf{DressCode} può intercettare con un'offerta più accessibile e distintiva. Jotform, con piani gratuiti e a pagamento (da 34 €/mese), compete su personalizzazione e integrazioni, ma non ha un'identità visiva unica come il tema abbigliamento di \textbf{DressCode}.
+\\\\
+Il vantaggio competitivo di \textbf{DressCode} risiede nella combinazione di semplicità, estetica tematica e integrazione facile, che lo differenzia da soluzioni generiche o eccessivamente complesse. Tuttavia, la concorrenza indiretta da piattaforme low-code come Wix o Squarespace, che includono moduli base nei loro editor, potrebbe attrarre utenti meno tecnici. Per superarli, \textbf{DressCode} punterà su un Minimum Viable Product (MVP) focalizzato su usabilità e branding unico, con potenziale espansione verso funzionalità collaborative.

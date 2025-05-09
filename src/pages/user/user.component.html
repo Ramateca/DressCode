@@ -1,0 +1,84 @@
+<div class="p-6 bg-white dark:bg-gray-800 rounded-lg">
+  <h2 class="text-xl font-semibold mb-6 text-gray-900 dark:text-white">User Settings</h2>
+  <form [formGroup]="form" (ngSubmit)="saveSettings()" class="space-y-6">
+
+    <!-- Boolean Toggles -->
+    <div class="flex items-center justify-between">
+      <label for="useGlossaryTerms" class="text-sm font-medium text-gray-700 dark:text-gray-300">Use Glossary Terms</label>
+      <button type="button" role="switch" [attr.aria-checked]="form.get('useGlossaryTerms')?.value" (click)="form.get('useGlossaryTerms')?.setValue(!form.get('useGlossaryTerms')?.value)"
+              class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 focus:ring-red-500"
+              [ngClass]="form.get('useGlossaryTerms')?.value ? 'bg-red-600' : 'bg-gray-200 dark:bg-gray-600'">
+        <span aria-hidden="true"
+              class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+              [ngClass]="form.get('useGlossaryTerms')?.value ? 'translate-x-5' : 'translate-x-0'"></span>
+      </button>
+    </div>
+
+    <div class="flex items-center justify-between">
+        <label for="showTooltips" class="text-sm font-medium text-gray-700 dark:text-gray-300">Show Tooltips</label>
+        <button type="button" role="switch" [attr.aria-checked]="form.get('showTooltips')?.value" (click)="form.get('showTooltips')?.setValue(!form.get('showTooltips')?.value)"
+                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 focus:ring-red-500"
+                [ngClass]="form.get('showTooltips')?.value ? 'bg-red-600' : 'bg-gray-200 dark:bg-gray-600'">
+          <span aria-hidden="true"
+                class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                [ngClass]="form.get('showTooltips')?.value ? 'translate-x-5' : 'translate-x-0'"></span>
+        </button>
+      </div>
+
+    <div class="flex items-center justify-between">
+        <label for="showStatsOnLogin" class="text-sm font-medium text-gray-700 dark:text-gray-300">Show Stats on Login</label>
+        <button type="button" role="switch" [attr.aria-checked]="form.get('showStatsOnLogin')?.value" (click)="form.get('showStatsOnLogin')?.setValue(!form.get('showStatsOnLogin')?.value)"
+                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 focus:ring-red-500"
+                [ngClass]="form.get('showStatsOnLogin')?.value ? 'bg-red-600' : 'bg-gray-200 dark:bg-gray-600'">
+          <span aria-hidden="true"
+                class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                [ngClass]="form.get('showStatsOnLogin')?.value ? 'translate-x-5' : 'translate-x-0'"></span>
+        </button>
+      </div>
+
+    <div class="flex items-center justify-between">
+        <label for="notificationsEmail" class="text-sm font-medium text-gray-700 dark:text-gray-300">Email Notifications</label>
+        <button type="button" role="switch" [attr.aria-checked]="form.get('notificationsEmail')?.value" (click)="form.get('notificationsEmail')?.setValue(!form.get('notificationsEmail')?.value)"
+                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 focus:ring-red-500"
+                [ngClass]="form.get('notificationsEmail')?.value ? 'bg-red-600' : 'bg-gray-200 dark:bg-gray-600'">
+          <span aria-hidden="true"
+                class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                [ngClass]="form.get('notificationsEmail')?.value ? 'translate-x-5' : 'translate-x-0'"></span>
+        </button>
+      </div>
+
+    <div class="flex items-center justify-between">
+        <label for="contrastMode" class="text-sm font-medium text-gray-700 dark:text-gray-300">Contrast Mode</label>
+        <button type="button" role="switch" [attr.aria-checked]="form.get('contrastMode')?.value" (click)="form.get('contrastMode')?.setValue(!form.get('contrastMode')?.value)"
+                class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 focus:ring-red-500"
+                [ngClass]="form.get('contrastMode')?.value ? 'bg-red-600' : 'bg-gray-200 dark:bg-gray-600'">
+          <span aria-hidden="true"
+                class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                [ngClass]="form.get('contrastMode')?.value ? 'translate-x-5' : 'translate-x-0'"></span>
+        </button>
+      </div>
+
+    <!-- Font Size Select -->
+    <div>
+      <label for="fontSize" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Font Size</label>
+      <select id="fontSize" formControlName="fontSize"
+              class="w-full px-3 py-2 rounded-md bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 focus:ring-red-500 focus:border-red-500">
+        <option value="small">Small</option>
+        <option value="normal">Normal</option>
+        <option value="large">Large</option>
+      </select>
+    </div>
+
+    <!-- Dialog Actions -->
+    <div class="flex justify-end pt-4 border-t border-gray-200 dark:border-gray-700">
+      <button type="button" (click)="closeDialog()"
+              class="mr-4 inline-flex justify-center rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 py-2 px-4 text-sm font-medium text-gray-700 dark:text-gray-200 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 dark:focus:ring-offset-gray-800">
+        Cancel
+      </button>
+      <button type="submit" [disabled]="!form.valid"
+              class="inline-flex justify-center rounded-lg border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 dark:focus:ring-offset-gray-800 disabled:opacity-50">
+        Save Settings
+      </button>
+    </div>
+  </form>
+</div>

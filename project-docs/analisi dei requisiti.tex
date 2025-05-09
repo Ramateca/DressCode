@@ -1,0 +1,121 @@
+\newcounter{requisiti}
+\newcounter{vincoli}
+\newcommand\numrequisiti{\stepcounter{requisiti}\arabic{requisiti}}
+\newcommand\numvincoli{\stepcounter{vincoli}\arabic{vincoli}}
+\newcommand\resetvincoli{\setcounter{vincoli}{0}}
+
+\newcommand{\requisito}[3]{%
+  \multicolumn{2}{|c|}{\cellcolor{Primary}\textcolor{white}{\textbf{REQ-DRESS-\numrequisiti\ -- #1}}} \\ \hline
+  \textbf{Descrizione} & #2 \\ \hline
+  \if\relax\detokenize{#3}\relax\else
+  \textbf{Considerazioni} & #3 \\ \hline \fi
+}
+% Comando per i vincoli
+\newcommand{\vincolo}[1]{%
+  \textbf{VIN-DRESS-\arabic{requisiti}.\numvincoli} & #1 \\ \hline
+}
+
+\section{\huge Analisi dei Requisiti}
+Questa sezione definisce i requisiti funzionali e non funzionali per \textbf{DressCode}', il form builder del progetto \textbf{DressCode}. I requisiti sono stati identificati considerando le esigenze degli utenti finali (sviluppatori web, designer, PMI) e gli obiettivi di semplicità, personalizzazione e integrazione del sistema.
+
+\subsection{Requisiti Funzionali}
+\begin{longtable}{|p{0.215\textwidth}|p{0.735\textwidth}|}
+\hline
+\requisito{Registrazione e Login Utente}{Il sistema deve consentire agli utenti di registrarsi e autenticarsi tramite email e password per accedere alla propria Boutique.}{Crittografia delle password con standard moderni (es. bcrypt).}
+\vincolo{L'autenticazione deve essere implementata entro la prima iterazione del prototipo (2 settimane dall'inizio).}
+\omit\resetvincoli
+
+\requisito{Creazione di un Vestito}{Gli utenti devono poter creare un nuovo progetto (Vestito) che contenga gruppi di moduli (Tessuti).}{Supporto per denominazione personalizzata e categorizzazione dei Vestiti.}
+\omit\resetvincoli
+
+\requisito{Gestione dei Tessuti}{L'utente deve poter organizzare i moduli in gruppi logici (Tessuti) all'interno di un Vestito.}{Possibilità di riordinare o eliminare Tessuti.}
+\omit\resetvincoli
+
+\requisito{Definizione di Trame}{Gli utenti devono poter creare flussi di moduli (Trame) con sequenze logiche di Fili.}{Supporto per flussi condizionali (es. “se sì, vai al modulo X”).}
+\omit\resetvincoli
+
+\requisito{Creazione di Fili}{Il sistema deve permettere la creazione di singoli moduli (Fili) tramite un editor drag-and-drop.}{Offrire template predefiniti per moduli comuni (es. contatto, registrazione).}
+\vincolo{L'editor drag-and-drop deve essere realizzato con Angular per compatibilità con il framework scelto.}
+\omit\resetvincoli
+
+\requisito{Personalizzazione Fibre}{Gli utenti devono poter aggiungere e configurare campi (Fibre) come testo, checkbox, dropdown, ecc.}{Anteprima in tempo reale delle modifiche.}
+\omit\resetvincoli
+
+\requisito{Esportazione Form}{I moduli creati devono essere esportabili come codice embeddable (es. HTML/JavaScript) per l'integrazione in siti esterni.}{Supporto per copia rapida del codice generato.}
+\omit\resetvincoli
+
+\requisito{Pubblicazione in Vetrina}{Gli utenti devono poter rendere pubblici i propri form nella Vetrina del sistema.}{Opzione per impostare visibilità pubblica o privata.}
+\vincolo{La Vetrina deve essere disponibile solo agli utenti registrati nella versione prototipo.}
+\omit\resetvincoli
+
+\requisito{Integrazione API}{Possibilità di collegare i form a API esterne per inviare o ricevere dati.}{Documentazione chiara e esempi di integrazione.}
+\omit\resetvincoli
+
+\requisito{Analisi Statistiche}{Gli utenti devono poter visualizzare statistiche sull'uso dei loro form (es. numero di compilazioni) tramite una dashboard.}{Integrazione opzionale con strumenti come Google Analytics.}
+\omit\resetvincoli
+
+\requisito{Collaborazione}{Supporto per più utenti che lavorano sullo stesso Vestito in tempo reale.}{Notifiche delle modifiche e gestione dei conflitti.}
+\vincolo{La collaborazione deve avere granularità fino ai flussi di moduli (Trame), solo 1 utente per volta potrà modificare un form (Filo).}
+\omit\resetvincoli
+
+\requisito{Notifiche Utente}{Inviare email per eventi chiave (es. pubblicazione in Vetrina, scadenza hosting).}{Personalizzazione delle preferenze di notifica.}
+\omit\resetvincoli
+
+\requisito{Gestione Media}{Gli utenti devono poter caricare immagini o altri media nei form.}{Compressione automatica per ottimizzare le prestazioni.}
+\omit\resetvincoli
+
+\requisito{Personalizzazione Accessori}{Gli utenti devono poter applicare temi estetici (Accessori) come colori e font ai form.}{Salvataggio dei temi personalizzati per riutilizzo.}
+\omit\resetvincoli
+
+\requisito{Cucitura Automatica}{Il sistema deve consentire agli utenti di unire moduli preesistenti (Cucitura) per creare Trame complesse.}{Suggerimenti automatici per combinazioni logiche.}
+\omit\resetvincoli
+
+\requisito{Sfilata}{Gli utenti devono poter mostrare i propri form in una modalità “Sfilata” con votazioni pubbliche.}{Integrazione con la Vetrina per promuovere i migliori form.}
+\omit\resetvincoli
+
+\requisito{Pianificazione Form}{Gli utenti devono poter programmare l'attivazione o disattivazione dei form in date specifiche.}{Interfaccia calendario per la gestione temporale.}
+\omit\resetvincoli
+\hline
+\end{longtable}
+
+\subsection{Requisiti Non Funzionali}
+\begin{longtable}{|p{0.215\textwidth}|p{0.735\textwidth}|}
+\hline
+\requisito{Responsive Design}{I form generati devono essere automaticamente ottimizzati per desktop e dispositivi mobili.}{Test automatici di compatibilità responsiva.}
+\omit\resetvincoli
+
+\requisito{Accessibilità}{I form creati devono rispettare gli standard WCAG 2.1 per l'accessibilità.}{Fornire suggerimenti automatici per migliorare la conformità.}
+\omit\resetvincoli
+
+\requisito{Backup Automatici}{Il sistema deve salvare periodicamente i Vestiti e i relativi dati.}{Opzione per ripristinare versioni precedenti.}
+\vincolo{Il database deve utilizzare PostgreSQL come specificato nell'analisi tecnica.}
+\omit\resetvincoli
+
+\requisito{SEO per Form Pubblici}{I form nella Vetrina devono essere ottimizzati per i motori di ricerca.}{Metadati configurabili (es. titolo, descrizione).}
+\omit\resetvincoli
+
+\requisito{Assistenza Tecnica}{Fornire supporto tramite chat o ticket per problemi tecnici.}{Tempi di risposta entro 24 ore.}
+\vincolo{Il supporto tecnico deve essere simulato nel prototipo, senza implementazione reale.}
+\omit\resetvincoli
+
+\requisito{Scalabilità}{Il sistema deve supportare fino a 100 utenti simultanei nella fase prototipo.}{Scalabilità completa non richiesta per il corso.}
+\omit\resetvincoli
+
+\requisito{Usabilità}{L'interfaccia deve essere intuitiva per utenti senza competenze tecniche avanzate.}{Il tema dell'abbigliamento deve facilitare la comprensione dei concetti (es. Vestito, Trama).}
+\omit\resetvincoli
+
+\requisito{Sicurezza}{I dati degli utenti e dei form devono essere protetti tramite crittografia e autenticazione sicura.}{Rispetto del GDPR per la gestione dei dati personali.}
+\vincolo{La crittografia deve essere implementata con standard AES-256 per i dati sensibili.}
+\omit\resetvincoli
+
+\requisito{Performance}{I form generati devono caricarsi in meno di 2 secondi su connessioni standard.}{Ottimizzazione delle risorse (es. compressione media).}
+\omit\resetvincoli
+
+\requisito{Compatibilità Browser}{I form devono funzionare correttamente sui principali browser (Chrome, Firefox, Safari, Edge).}{Test multipiattaforma automatizzati.}
+\omit\resetvincoli
+
+\requisito{Manutenibilità}{Il codice del sistema deve essere modulare e ben documentato per futuri aggiornamenti.}{Uso di commenti e struttura MVC in Angular.}
+\omit\resetvincoli
+\hline
+\end{longtable}
+

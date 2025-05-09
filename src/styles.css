@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@use '@angular/cdk' as cdk;
+
+@include cdk.overlay();
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Colori principali del brand */
+  --color-dresscode-main: #DC2626;
+  --color-dresscode-dark: #841515;
+  --color-dresscode-light: #FFFFFF;
+  --color-dresscode-muted: #F3F4F6;
+  --color-dresscode-accent: #CF3083;
+
+  /* Shortcut per bg e text */
+  --color-bg-base: #FFFFFF;
+  --color-bg-muted: #F9FAFB;
+  --color-text-base: #111111;
+  --color-text-muted: #6B7280;
+
+  /* Font families */
+  --font-family-display: "Playfair Display", serif;
+  --font-family-sans: Inter, sans-serif;
+
+  /* Border radius */
+  --border-radius-pill: 2rem;
+  --border-radius-xl: 1.25rem;
+  --border-radius-2xl: 2rem;
+
+  /* Box shadows */
+  --shadow-soft: 0 2px 12px rgba(0,0,0,0.05);
+  --shadow-elegant: 0 4px 24px rgba(140, 21, 21, 0.25);
+
+  /* Spacing */
+  --spacing-layout: 4rem;
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+label:has(+ input[required])::after {
+  content: " *";
+}

@@ -1,0 +1,292 @@
+<header class="fixed w-full bg-bg-base dark:bg-gray-900 shadow-soft dark:shadow-none z-50">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center">
+      <span class="text-2xl font-display font-bold text-dresscode-main dark:text-red-500"
+        >Dress<span class="text-dresscode-dark dark:text-red-700">Code</span></span
+      >
+    </div>
+    <div class="flex items-center space-x-4">
+      <a
+        href="/login"
+        class="hidden md:block text-dresscode-main dark:text-red-500 hover:text-dresscode-dark dark:hover:text-red-400 transition"
+        >Login</a
+      >
+    </div>
+  </div>
+</header>
+
+<section
+  class="min-h-screen bg-bg-base dark:bg-gray-900 flex items-center justify-center p-6 pt-24"
+>
+  <div class="container mx-auto max-w-xl">
+    <div class="bg-bg-muted dark:bg-gray-800 rounded-xl shadow-soft dark:shadow-none p-8">
+      <h1 class="text-3xl font-display text-center mb-6 text-dresscode-dark dark:text-white">
+        <span class="text-dresscode-main dark:text-red-500">Create</span> Your Account
+      </h1>
+      <p class="text-text-muted dark:text-gray-300 text-center mb-8">
+        Join DressCode and start designing stunning forms today.
+      </p>
+
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+        class="grid grid-cols-1 md:grid-cols-2 gap-6"
+      >
+        <div class="col-span-1">
+          <label
+            for="cognome"
+            class="block text-sm font-medium text-dresscode-dark dark:text-gray-200 mb-2"
+            >Last Name</label
+          >
+          <input
+            id="cognome"
+            type="text"
+            formControlName="cognome"
+            class="w-full px-4 py-3 rounded-lg bg-bg-base dark:bg-gray-700 border border-dresscode-muted dark:border-gray-600 text-text-muted dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-dresscode-main dark:focus:ring-red-500"
+            placeholder="Enter your last name"
+            [class.border-red-500]="
+              registerForm.get('cognome')?.touched &&
+              registerForm.get('cognome')?.invalid
+            "
+          />
+          @if (registerForm.get('cognome')?.touched &&
+          registerForm.get('cognome')?.invalid) {
+          <p class="text-red-500 text-sm mt-1">Last name is required.</p>
+          }
+        </div>
+
+        <div class="col-span-1">
+          <label
+            for="nome"
+            class="block text-sm font-medium text-dresscode-dark dark:text-gray-200 mb-2"
+            >First Name</label
+          >
+          <input
+            id="nome"
+            type="text"
+            formControlName="nome"
+            class="w-full px-4 py-3 rounded-lg bg-bg-base dark:bg-gray-700 border border-dresscode-muted dark:border-gray-600 text-text-muted dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-dresscode-main dark:focus:ring-red-500"
+            placeholder="Enter your first name"
+            [class.border-red-500]="
+              registerForm.get('nome')?.touched &&
+              registerForm.get('nome')?.invalid
+            "
+          />
+          @if (registerForm.get('nome')?.touched &&
+          registerForm.get('nome')?.invalid) {
+            <p class="text-red-500 text-sm mt-1">First name is required.</p>
+          }
+        </div>
+
+        <div class="col-span-1">
+          <label
+            for="username"
+            class="block text-sm font-medium text-dresscode-dark dark:text-gray-200 mb-2"
+            >Username</label
+          >
+          <input
+            id="username"
+            type="text"
+            formControlName="username"
+            class="w-full px-4 py-3 rounded-lg bg-bg-base dark:bg-gray-700 border border-dresscode-muted dark:border-gray-600 text-text-muted dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-dresscode-main dark:focus:ring-red-500"
+            placeholder="Enter your username"
+            [class.border-red-500]="
+              registerForm.get('username')?.touched &&
+              registerForm.get('username')?.invalid
+            "
+          />
+          @if (registerForm.get('username')?.touched &&
+          registerForm.get('username')?.invalid) {
+          <p class="text-red-500 text-sm mt-1">Username is required.</p>
+          }
+        </div>
+
+        <div class="col-span-1">
+          <label
+            for="email"
+            class="block text-sm font-medium text-dresscode-dark dark:text-gray-200 mb-2"
+            >Email</label
+          >
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            class="w-full px-4 py-3 rounded-lg bg-bg-base dark:bg-gray-700 border border-dresscode-muted dark:border-gray-600 text-text-muted dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-dresscode-main dark:focus:ring-red-500"
+            placeholder="Enter your email"
+            [class.border-red-500]="
+              registerForm.get('email')?.touched &&
+              registerForm.get('email')?.invalid
+            "
+          />
+          @if (registerForm.get('email')?.touched &&
+          registerForm.get('email')?.invalid) {
+          <p class="text-red-500 text-sm mt-1">
+            Please enter a valid email address.
+          </p>
+          }
+        </div>
+
+        <div class="col-span-1">
+          <label
+            for="password"
+            class="block text-sm font-medium text-dresscode-dark dark:text-gray-200 mb-2"
+            >Password</label
+          >
+          <div class="relative">
+          <input
+            id="password"
+              [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+              class="w-full px-4 py-3 rounded-lg bg-bg-base dark:bg-gray-700 border border-dresscode-muted dark:border-gray-600 text-text-muted dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-dresscode-main dark:focus:ring-red-500"
+            placeholder="Enter your password"
+              [class.border-red-500]="
+                registerForm.get('password')?.touched &&
+                registerForm.get('password')?.invalid
+              "
+            />
+            <button
+              type="button"
+              (click)="togglePasswordVisibility()"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center"
+            >
+              @if (showPassword) {
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-dresscode-dark dark:text-gray-300"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                />
+              </svg>
+              } @else {
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-dresscode-dark dark:text-gray-300"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 3a7 7 0 00-7 7 7 7 0 0014 0 7 7 0 00-7-7zm0 12a5 5 0 110-10 5 5 0 010 10z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              }
+            </button>
+          </div>
+          @if (registerForm.get('password')?.touched &&
+          registerForm.get('password')?.invalid) {
+          <p class="text-red-500 text-sm mt-1">
+            Password must be at least 6 characters long.
+          </p>
+          }
+        </div>
+
+        <div class="col-span-1">
+          <label
+            for="confirmPassword"
+            class="block text-sm font-medium text-dresscode-dark dark:text-gray-200 mb-2"
+            >Confirm Password</label
+          >
+          <div class="relative">
+            <input
+              id="confirmPassword"
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="confirmPassword"
+              class="w-full px-4 py-3 rounded-lg bg-bg-base dark:bg-gray-700 border border-dresscode-muted dark:border-gray-600 text-text-muted dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-dresscode-main dark:focus:ring-red-500"
+              placeholder="Confirm your password"
+              [class.border-red-500]="
+                registerForm.get('confirmPassword')?.touched &&
+                registerForm.get('confirmPassword')?.invalid
+              "
+            />
+            <button
+              type="button"
+              (click)="togglePasswordVisibility()"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center"
+            >
+              @if (showPassword) {
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-dresscode-dark dark:text-gray-300"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                />
+              </svg>
+              } @else {
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-dresscode-dark dark:text-gray-300"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 3a7 7 0 00-7 7 7 7 0 0014 0 7 7 0 00-7-7zm0 12a5 5 0 110-10 5 5 0 010 10z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              }
+            </button>
+          </div>
+          @if (registerForm.get('confirmPassword')?.touched &&
+          registerForm.get('confirmPassword')?.invalid) {
+          <p class="text-red-500 text-sm mt-1">Passwords must match.</p>
+          }
+        </div>
+
+        <div class="col-span-2 mt-4">
+        <button
+          type="submit"
+          [disabled]="registerForm.invalid || loading"
+            class="w-full bg-dresscode-main dark:bg-red-600 text-dresscode-light dark:text-white py-3 rounded-lg hover:bg-dresscode-dark dark:hover:bg-red-700 transition shadow-soft dark:shadow-none disabled:opacity-50"
+        >
+            @if (loading) {
+            <span class="flex items-center justify-center">
+              <svg
+                class="animate-spin h-5 w-5 mr-2 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              Creating Account...
+            </span>
+            } @else {
+            <span>Create Account</span>
+          }
+        </button>
+        </div>
+      </form>
+
+      <div class="mt-8 text-center">
+        <p class="text-text-muted dark:text-gray-300">
+          Already have an account?
+          <a
+            href="/login"
+            class="text-dresscode-main dark:text-red-500 hover:text-dresscode-dark dark:hover:text-red-400 transition"
+            >Login here</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
